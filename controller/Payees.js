@@ -5,7 +5,7 @@ exports.showPayee = function getPayee(session, username){
     rest.getPayee(url, session, username, handlePayeeResponse)
 };
 
-exports.sendPayee = function post(session, username, payee){
+exports.sendPayee = function postPayee(session, username, payee){
     var url = 'http://contosobankbot00.azurewebsites.net/tables/Payees';
     rest.postPayee(url, username, payee);
 };
