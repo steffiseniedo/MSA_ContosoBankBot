@@ -56,15 +56,26 @@ exports.deletePayee = function deleteData(url,session, username ,payee, id, call
 
 };
 
+exports.getExchangeRate = function getData(url, session, callback, fromCurr, toCurr, amount){
+
+         request.get(url, {'headers':{'ZUMO-API-VERSION': '2.0.0'}}, function handleGetReponse(err,res,body){
+     
+             if(err){
+                 console.log(err);
+             }else {
+                callback(body, session, fromCurr, toCurr, amount);
+             }
+             
+         });
+ };
 
 
-
-
-
-
-
-
-
-
-
-
+ exports.getAccounts = function getData(url, session, username, callback){
+    request.get(url, {'headers':{'ZUMO-API-VERSION': '2.0.0'}}, function handleGetResponse(err,res,body){
+        if(err){
+            console.log(err);
+        }else {
+            callback(body, session, username);
+        }
+    });
+};

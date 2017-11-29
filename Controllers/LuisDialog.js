@@ -3,7 +3,7 @@ var customVision = require('./controller/CustomVision');
 var exchangeRate = require('./controller/ExchangeRate');
 var payees = require('./controller/Payees');
 var userAccounts = require('./controller/UserAccounts');
-var userInfo = require('./controller/UserInfo');
+
 
 exports.startDialog = function (bot) {
     
@@ -121,13 +121,65 @@ exports.startDialog = function (bot) {
 
 
     //GetExhangeRate intent
+    bot.dialog('GetExchangeRate', 
+        function (session, args, next) {
+            if (!isAttachment(session)) {
+                //Find the amount, and 'to'/'from' currencies in the dialog
+                var fromCurr = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'fromCurr').entity;
+                var toCurr = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'toCurr').entity;
+                var amount = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'amount').entity;
 
+                //if no amount is entered, set to 1 by default
+                if (!amount){
+                    amount == 1;
+                }
 
-    //TransferFunds intent
+                //set NZD to default 'from' or 'to' currency if one is not entered
+                if (!fromCurr){
+                    fromCurr == NZD;
+                }
+                if (!toCurr){
+                    toCurr == NZD;
+                }
 
+                if (toCurr){
+                    //convert currency symbols to upper case
+                    fromCurr = fromCurr.toUpperCase();
+                    toCurr = toCurr.toUpperCase();
+                    exchangeRate.currencyExchange(session, fromCurr, toCurr, amount);
+                }
+                else{
+                    session.send("Error! Please try again.");
+                }
+            }
+    }
+    ).triggerAction({
+        matches: "GetExchangeRate"
+    });
 
     //GetUserAccounts intent
-    
+    bot.dialog('GetUserAccounts', [
+        function (session, args, next) {
+            session.dialogData.args = args || {};        
+            if (!session.conversationData["username"]) {
+                builder.Prompts.text(session, "Please enter your username");                
+            } else {
+                next();
+            }
+        },
+        function (session, results, next) {
+            if (!isAttachment(session)) {
+                if (results.response) {
+                    session.conversationData["username"] = results.response;
+                }
+
+                session.send("Retieving your accounts...");
+                userAccounts.showAccounts(session, session.conversationData["username"]);  
+            }
+        }
+    ]).triggerAction({
+        matches: 'GetUserAccounts'
+    });
 
 
     //Check if the message typed is an attachment or link to an image

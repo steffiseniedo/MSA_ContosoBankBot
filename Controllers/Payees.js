@@ -63,4 +63,6 @@ function handlePayeeResponse(message, session, username) {
     // Print all payees for the user that is currently logged in
     session.send("%s, here are your payees: %s", username, payeeList);                
     
+
+    
 }
