@@ -40,14 +40,14 @@ exports.startDialog = function (bot) {
             }
         },
         function (session, results, next) {
-            if (!isAttachment(session)) {
+            //if (!isAttachment(session)) {
                 if (results.response) {
                     session.conversationData["username"] = results.response;
                 }
 
                 session.send("Retrieving your Payees... Please wait...");
                 payees.showPayee(session, session.conversationData["username"]);  
-            }
+            //}
         }
     ]).triggerAction({
         matches: 'GetPayees'
@@ -64,7 +64,7 @@ exports.startDialog = function (bot) {
             }
         },
         function (session, results, next) {
-            if (!isAttachment(session)) {
+            //if (!isAttachment(session)) {
                 if (results.response) {
                     session.conversationData["username"] = results.response;
                 }
@@ -79,7 +79,7 @@ exports.startDialog = function (bot) {
                 } else {
                     session.send("Error! Could not add payee. Please try again.");
                 }
-            }
+            //}
         }
     ]).triggerAction({
         matches: 'AddPayee'
@@ -96,7 +96,7 @@ exports.startDialog = function (bot) {
             }
         },
         function (session, results,next) {
-            if (!isAttachment(session)) {
+            //if (!isAttachment(session)) {
                 if (results.response) {
                     session.conversationData["username"] = results.response;
                 }
@@ -113,7 +113,7 @@ exports.startDialog = function (bot) {
                 } else {
                     session.send("Error! Could not delete payee. Please try again.");
                 }
-            }
+            //}
 
     }]).triggerAction({
         matches: 'DeletePayee'
@@ -123,7 +123,7 @@ exports.startDialog = function (bot) {
     //GetExhangeRate intent
     bot.dialog('GetExchangeRate', 
         function (session, args, next) {
-            if (!isAttachment(session)) {
+            //if (!isAttachment(session)) {
                 //Find the amount, and 'to'/'from' currencies in the dialog
                 var fromCurr = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'fromCurr').entity;
                 var toCurr = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'toCurr').entity;
@@ -151,7 +151,7 @@ exports.startDialog = function (bot) {
                 else{
                     session.send("Error! Please try again.");
                 }
-            }
+            //}
     }
     ).triggerAction({
         matches: "GetExchangeRate"
@@ -168,14 +168,14 @@ exports.startDialog = function (bot) {
             }
         },
         function (session, results, next) {
-            if (!isAttachment(session)) {
+            //if (!isAttachment(session)) {
                 if (results.response) {
                     session.conversationData["username"] = results.response;
                 }
 
                 session.send("Retieving your accounts...");
                 userAccounts.showAccounts(session, session.conversationData["username"]);  
-            }
+            //}
         }
     ]).triggerAction({
         matches: 'GetUserAccounts'
