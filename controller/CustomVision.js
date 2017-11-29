@@ -18,7 +18,7 @@ exports.retreiveMessage = function (session){
 
 function validResponse(body){
     if (body && body.Predictions && body.Predictions[0].Tag){
-        return "This is " + body.Predictions[0].Tag
+        return 'This is ' + body.Predictions[0].Tag + '. If you want to convert from ' + body.Predictions[0].Tag + ', type \"Convert from ' + body.Predictions[0].Tag + ' to [SOME OTHER CURRENCY] \"'
     } else{
         console.log('Oops, please try again!');
     }

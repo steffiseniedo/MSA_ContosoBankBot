@@ -4,7 +4,7 @@ var builder = require('botbuilder');
 exports.currencyExchange = function getExchange(session, fromCurr, toCurr, amount){
 
     var url ='https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency='+fromCurr+'&to_currency='+toCurr+'&apikey=4UJ7C2O2W5QM5H7W';
-    rest.getExchangeRate(url, session, displayExchangeRate, fromCurr, toCurr, amount);
+    rest.getExchangeRate(url, session, showExchangeRate, fromCurr, toCurr, amount);
 }
 
 function showExchangeRate(message, session, fromCurr, toCurr, amount){

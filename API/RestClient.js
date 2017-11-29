@@ -10,7 +10,7 @@ exports.getPayees = function getData(url, session, username, callback){
     });
 };
 
-exports.postPayees = function getData(url, username, payee){
+exports.postPayees = function SendData(url, username, payee){
     var options = {
         url: url,
         method: 'POST',

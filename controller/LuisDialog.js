@@ -1,8 +1,8 @@
 var builder = require('botbuilder');
-var customVision = require('./controller/CustomVision');
-var exchangeRate = require('./controller/ExchangeRate');
-var payees = require('./controller/Payees');
-var userAccounts = require('./controller/UserAccounts');
+var customVision = require('./CustomVision');
+var exchangeRate = require('./ExchangeRate');
+var payees = require('./Payees');
+var userAccounts = require('./UserAccounts');
 
 
 exports.startDialog = function (bot) {
