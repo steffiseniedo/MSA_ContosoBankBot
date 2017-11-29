@@ -1,0 +1,23 @@
+{
+  "name": "msa_contosobankbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steffiseniedo/MSA_ContosoBankBot.git"
+  },
+  "author": "Steffi Seniedo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steffiseniedo/MSA_ContosoBankBot/issues"
+  },
+  "homepage": "https://github.com/steffiseniedo/MSA_ContosoBankBot#readme",
+  "dependencies": {
+    "botbuilder": "^3.12.0",
+    "restify": "^6.3.4"
+  }
+}
